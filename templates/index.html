@@ -1,78 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Real Madrid's Next Match</title>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+ <a href="https://www.google.co.in/?gfe_rd=cr&ei=sbXpVvHTAtCL8Qfv1YHQBQ">Google</a>
+ <button class="btn" type="button" name="game1">game1</button> 
 
-    <!-- Bootstrap core CSS -->
-    <link href="static/css/bootstrap.css" rel="stylesheet">
+<div class="container">
+  <h2>Dropdowns</h2>
+  <p>The .dropdown class is used to indicate a dropdown menu.</p>
+  <p>Use the .dropdown-menu class to actually build the dropdown menu.</p>
+  <p>To open the dropdown menu, use a button or a link with a class of .dropdown-toggle and data-toggle="dropdown".</p>                                          
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
+</div>
 
-    <!-- Custom styles for this template -->
-    <link href="static/css/soon.css" rel="stylesheet">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- ;
+// numberguess is by Lancer - written 4 Jan 1999
+// lancer@kp.planet.gen.nz
 
+var guessme=Math.round(Math.random()*(99)+1);
+var speech='Guess my number (from 1 to 100)';
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="static/js/html5shiv.js"></script>
-      <script src="static/js/respond.min.js"></script>
-    <![endif]-->
+function process(mystery) {
+var guess=document.forms.guessquiz.guess.value;
+var speech='"'+guess+ '" does not make sense to me.';
+document.forms.guessquiz.guess.value='';
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+if (guess==mystery)
+{
+document.forms.guessquiz.prompt.value='Congratulations! '+mystery+' is correct!';
+alert ('Well done - the mystery number is '+mystery+'! \n\nPress this button to reload the page for another game.');
+speech='';
+document.location=document.location;
+}
 
-  </head>
-  <!-- START BODY -->
-  <body class="nomobile">
+if (mystery<guess)
+{
+speech='Less than '+ guess;
+}
 
-    <!-- START HEADER -->
-    <section id="header">
-        <div class="container">
-            <header>
-                <!-- HEADLINE -->
-                <h1 data-animated="GoIn"><b>Real Madrid</b> plays in</h1>
-            </header>
-            <!-- START TIMER -->
-            <div id="timer" data-animated="FadeIn">
-                <div id="days" class="timer_box"></div>
-                <div id="hours" class="timer_box"></div>
-                <div id="minutes" class="timer_box"></div>
-                <div id="seconds" class="timer_box"></div>
-                 <b><p id="message"></p></b>
-            </div>
-            <!-- END TIMER -->
-            </br>
-            <div class="col-lg-4 col-lg-offset-4 mt centered">
+if (mystery>guess)
+{
+speech='Greater than '+ guess;
+}
 
-                <p>Powered by<strong> IntelliDesigns </strong></p>
-			</div>
+if (guess=='')
+{
+speech='You didn\'t guess anything!'
+}
 
+document.forms.guessquiz.prompt.value=speech; document.forms.guessquiz.guess.focus();
 
-        </div>
-        <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
-        <!-- END LAYER -->
-        <!-- START SLIDER -->
+}
 
-        <!-- END SLIDER -->
-    </section>
-    <!-- END HEADER -->
+// end hide -->
+</SCRIPT>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="static/js/modernizr.custom.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/soon/plugins.js"></script>
-    <script src="static/js/soon/jquery.themepunch.revolution.min.js"></script>
+<FORM onSubmit="" NAME="guessquiz">
+<CENTER>
+<TABLE ALIGN="CENTER" BGCOLOR="#888888" BORDER="3" CELLPADDING="5">
+<TR>
+<TD BGCOLOR="#004080">
+<FONT COLOR="#ffffff" FACE="Arial"><B>GUESS MY NUMBER (1 - 100)</B></FONT>
+</TD>
+</TR>
+<TR>
+<TD>
+<CENTER>
+<INPUT TYPE="text" NAME="prompt" SIZE="31" MAXLENGTH="40" VALUE="Guess my number (from 1 to 100)"><BR>
+<INPUT TYPE="text" NAME="guess" SIZE="3" MAXLENGTH="3" VALUE="">
+<INPUT TYPE="button" VALUE="Guess" onClick='process(guessme)'>
+</CENTER>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</FORM>
 
-
-    <input type="hidden" id="hour" name="hour" value="{{ hour }}">
-    <input type="hidden" id="min" name="min" value="{{ minutes }}">
-    <input type="hidden" id="opp" name="opp" value="{{ opp }}">
-    <input type="hidden" id="loc" name="loc" value="{{ loc }}">
-    <input type="hidden" id="year" name="year" value="{{ year }}">
-    <input type="hidden" id="day" name="day" value="{{ day }}">
-    <input type="hidden" id="month" name="month" value="{{ month }}">
-<script src="static/js/soon/custom.js"></script>
-  </body>
-  <!-- END BODY -->
+</body>
 </html>
