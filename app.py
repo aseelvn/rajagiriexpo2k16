@@ -1,62 +1,36 @@
-"""
-Flask Documentation:     http://flask.pocoo.org/docs/
-Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
-Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
+import requests
+import datetime
+from bs4 import BeautifulSoup as bs
+from lxml import html
+url = 'http://www.realmadrid.com/en/football/schedule'
+response = requests.get(url)
+html = response.content
+soup = bs(html)
+loc = soup.find('p', {'class': 'm_highlighted_next_game_location'}).contents
+loc1 = loc[0]
+if "Santiago" in loc1:
+    opp = soup.find('div',{'class':'m_highlighted_next_game_team m_highlighted_next_game_second_team'}).strong.contents
+else:
+    opp = soup.find('div', {'class': 'm_highlighted_next_game_team'}).strong.contents
+opp1=opp[0]
+time = soup.find('div', {'class': 'm_highlighted_next_game_info_wrapper'}).time.contents
+time1 = time[0]
+date = soup.find('header', {'class': 'm_highlighted_next_game_header'}).time.contents
+date1 = date[0]
+times = time1.split(":")
+dates = date1.split("/")
 
-This file creates your application.
-"""
-
-import os
-from flask import Flask, render_template, request, redirect, url_for
-
+hour = times[0]
+mintemp = times[1]
+minutes = mintemp[:-2]
+year = dates[0]
+month = dates[1]
+day = dates[2]
+from flask import Flask, render_template
 app = Flask(__name__)
-
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
-
-
-###
-# Routing for your application.
-###
-
 @app.route('/')
-def home():
-    """Render website's home page."""
-    return render_template('home.html')
-
-
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
-
-
-###
-# The functions below should be applicable to all Flask apps.
-###
-
-@app.route('/<file_name>.txt')
-def send_text_file(file_name):
-    """Send your static text file."""
-    file_dot_text = file_name + '.txt'
-    return app.send_static_file(file_dot_text)
-
-
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=600'
-    return response
-
-
-@app.errorhandler(404)
-def page_not_found(error):
-    """Custom 404 page."""
-    return render_template('404.html'), 404
-
+def index():
+    return render_template('index.html',hour=hour,minutes=minutes,year=year,month=month,day=day,loc=loc1,opp=opp1)
 
 if __name__ == '__main__':
     app.run(debug=True)
